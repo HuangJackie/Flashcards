@@ -1,0 +1,19 @@
+{
+    "name": "Flashcard",
+    "version": "1.0",
+    "description": "A Flashcard Extension that quizzes whenever you open a new webpage.",
+    "permissions": [
+        "declarativeContent",
+        "storage"
+    ],
+    "page_action": {
+        "default_popup": "popup_menu.html"
+    },
+    "background": {
+        "scripts": [
+            "background.js"
+        ],
+        "persistent": true
+    },
+    "manifest_version": 2
+}
