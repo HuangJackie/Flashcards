@@ -19,3 +19,9 @@ chrome.runtime.onInstalled.addListener(function () {
         }]);
     });
 });
+
+chrome.history.onVisited.addListener(function (details) {
+    if (details.url.indexOf('quiz.html') === -1) {
+        chrome.storage.local.set({ prev_url: details.url });
+    }
+});
