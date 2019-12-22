@@ -5,9 +5,6 @@ let term = document.getElementById('term');
 let definition = document.getElementById('definition');
 let confirmation = document.getElementById('confirmation');
 
-let display = document.getElementById('display');
-let result = document.getElementById('result');
-
 submit.onclick = function (element) {
     chrome.storage.local.get('dict', function (data) {
         let length = Object.keys(data.dict).length;
@@ -21,6 +18,9 @@ submit.onclick = function (element) {
     });
 };
 
+let display = document.getElementById('display');
+let result = document.getElementById('result');
+
 display.onclick = function (element) {
     chrome.storage.local.get('dict', function (data) {
         let element = document.getElementById('element');
@@ -32,3 +32,9 @@ display.onclick = function (element) {
         }
     });
 };
+
+let quiz = document.getElementById('quiz');
+
+quiz.onclick = function (element) {
+    chrome.tabs.update({url: "quiz.html"});
+}
