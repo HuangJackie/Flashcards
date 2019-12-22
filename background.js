@@ -4,7 +4,8 @@ chrome.runtime.onInstalled.addListener(function () {
     chrome.storage.local.set({
         dict: { 0: { term: "Term", definition: "Definition" } },
         current_question: 0,
-        num_questions: 2
+        num_questions: 2,
+        NUM: 2
     }, function () {
         console.log('Initialized dict.');
     });
