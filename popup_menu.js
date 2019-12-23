@@ -11,10 +11,10 @@ submit.onclick = function (element) {
         data.dict[length] = {};
         data.dict[length]["term"] = term.value;
         data.dict[length]["definition"] = definition.value;
-        chrome.storage.local.set({ dict: data.dict }, function () {
-            console.log('Saved dict.');
-        });
+        chrome.storage.local.set({ dict: data.dict });
         confirmation.innerHTML = data.dict[length]["term"] + " " + data.dict[length]["definition"];
+        term.value = "";
+        definition.value = "";
     });
 };
 
@@ -30,11 +30,24 @@ display.onclick = function (element) {
         else {
             result.innerHTML = data.dict[element.value]["term"] + " " + data.dict[element.value]["definition"];
         }
+        element.value = "";
     });
 };
 
 let quiz = document.getElementById('quiz');
 
 quiz.onclick = function (element) {
-    chrome.tabs.update({url: "quiz.html"});
+    chrome.tabs.update({ url: "quiz.html" });
+}
+
+let submit_redirects = document.getElementById('submit_redirects');
+let num_redirects = document.getElementById('num_redirects');
+
+submit_redirects.onclick = function (element) {
+    if (/^\d+$/.test(num_redirects.value) && num_redirects.value != 0) {
+        chrome.storage.local.set({ REDIRECTS: num_redirects.value, num_redirects: num_redirects.value });
+    } else {
+        confirmation.innerHTML = "Invalid value";
+    }
+    num_redirects.value = "";
 }
