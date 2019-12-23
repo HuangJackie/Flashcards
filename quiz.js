@@ -20,13 +20,13 @@ chrome.storage.local.get(['dict', 'current_question', 'num_questions', "NUM"], f
 });
 
 submit.onclick = function (element) {
-    chrome.storage.local.get(['dict', 'current_question'], function (data) {
+    chrome.storage.local.get(['dict', 'current_question', 'REDIRECTS'], function (data) {
         if (definition.value === data.dict[data.current_question]["definition"]) {
             result.innerHTML = "Correct";
             submit.disabled = true;
             definition.disabled = true;
             next.disabled = false;
-            chrome.storage.local.set({ num_questions: data.num_questions - 1});
+            chrome.storage.local.set({ num_questions: data.num_questions - 1, num_redirects: data.REDIRECTS});
         }
         else {
             result.innerHTML = "Incorrect";

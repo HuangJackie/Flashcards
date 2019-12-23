@@ -4,7 +4,7 @@
     "description": "A Flashcard Extension that quizzes whenever you open a new webpage.",
     "permissions": [
         "declarativeContent",
-        "history",
+        "tabs",
         "storage"
     ],
     "page_action": {
