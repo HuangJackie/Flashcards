@@ -13,7 +13,7 @@ chrome.storage.local.get(['dict', 'current_question', 'num_questions', "NUM"], f
         submit.disabled = true;
         definition.disabled = true;
         exit.disabled = false;
-        chrome.storage.local.set({ num_questions: data.NUM, current_question : 0});
+        chrome.storage.local.set({ num_questions: data.NUM, current_question: 0 });
     } else {
         term.innerHTML = data.dict[data.current_question]["term"];
     }
@@ -26,7 +26,7 @@ submit.onclick = function (element) {
             submit.disabled = true;
             definition.disabled = true;
             next.disabled = false;
-            chrome.storage.local.set({ num_questions: data.num_questions - 1, num_redirects: data.REDIRECTS});
+            chrome.storage.local.set({ num_questions: data.num_questions - 1, num_redirects: data.REDIRECTS });
         }
         else {
             result.innerHTML = "Incorrect";
@@ -42,8 +42,10 @@ next.onclick = function (element) {
     });
 };
 
+
 exit.onclick = function (element) {
     chrome.storage.local.get('prev_url', function (data) {
         chrome.tabs.update({ url: data.prev_url });
+        chrome.history.deleteUrl({ url: "chrome-extension://" + chrome.runtime.id + "/quiz.html"});
     });
 };
