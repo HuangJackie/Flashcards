@@ -1,0 +1,40 @@
+#next {
+    visibility: hidden;
+}
+
+#exit {
+    visibility: hidden;
+}
+
+#submit {
+    height: 30px;
+    width: 100%;
+    outline: none;
+    margin: 10px;
+  }
+
+#next {
+    height: 30px;
+    width: 100%;
+    outline: none;
+    margin: 10px;
+}
+
+#exit {
+    height: 30px;
+    width: 100%;
+    outline: none;
+    margin: 10px;
+}
+
+h2 {
+    margin: 50px;
+    text-align: center;
+}
+
+input[type=text] {
+    width: 100%;
+    padding: 10px 10px; 
+    box-sizing: border-box;
+    text-align: center;
+  }

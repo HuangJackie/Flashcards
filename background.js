@@ -8,7 +8,7 @@ chrome.runtime.onInstalled.addListener(function () {
         NUM: 2,
         num_redirects: 3,
         REDIRECTS: 3,
-        whitelist: ["quiz.html"],
+        whitelist: ["quiz.html", "options.html"],
         ON_OFF: true
     }, function () {
         console.log('Initialized dict.');
