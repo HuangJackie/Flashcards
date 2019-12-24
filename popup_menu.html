@@ -1,27 +1,35 @@
 <!DOCTYPE html>
-  <html>
-    <head>
-    </head>
-      
-    <body>
-      <input type="checkbox" id="on_off"></input>
-      <form>
-        Term:
-        <br><input type="text" id="term"><br>
-        Definition:
-        <br><input type="text" id="definition"><br>  
-      </form>
-      <button id="submit">Submit</button>
-      <h5 id="confirmation"></h5>
-      <h5 id="result">Testing</h5>
-      <form>
-          Display Card:
-          <br><input type="text" id="element"><br>
-        </form>
-      <button id="display">Display</button>
-      <button id="quiz">Quiz</button>
-      <br>
-      <button id="options">Options</button>
-      <script src="popup_menu.js"></script>
-    </body>
-  </html>
+<html>
+
+<head>
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <script src="js/jquery-3.4.1.min.js" type="text/javascript"></script>
+</head>
+
+<body>
+  <div class="flex-col p-3">
+    <h1>Flashcards</h1>
+    <div class="custom-control custom-switch">
+      <input type="checkbox" class="custom-control-input" id="on_off">
+      <label class="custom-control-label" for="on_off">On/Off</label>
+    </div>
+    <form>
+      <div class="form-group">
+        <div class="input-group">
+          <br><input type="text" class="form-control" placeholder="Term" id="term"><br>
+        </div>
+        <div class="input-group">
+          <br><input type="text" class="form-control" placeholder="Definition" id="definition"><br>
+        </div>
+        <button class="btn btn-primary" id="submit">Add</button>
+      </div>
+    </form>
+    <h5 id="confirmation"></h5>
+    <button class="btn btn-primary" id="quiz">Start Quiz</button>
+    <br>
+    <button class="btn btn-info" id="options">Options</button>
+  </div>
+  <script src="popup_menu.js"></script>
+</body>
+
+</html>

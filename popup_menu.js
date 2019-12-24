@@ -18,29 +18,11 @@ submit.onclick = function (element) {
     });
 };
 
-let display = document.getElementById('display');
-let result = document.getElementById('result');
-
-display.onclick = function (element) {
-    chrome.storage.local.get('dict', function (data) {
-        let element = document.getElementById('element');
-        if (element.value >= Object.keys(data.dict).length || !/^\d+$/.test(element.value)) {
-            result.innerHTML = "No element";
-        }
-        else {
-            result.innerHTML = data.dict[element.value]["term"] + " " + data.dict[element.value]["definition"];
-        }
-        element.value = "";
-    });
-};
-
 let quiz = document.getElementById('quiz');
 
 quiz.onclick = function (element) {
     chrome.tabs.update({ url: "quiz.html" });
 }
-
-
 
 let onOffSwitch = document.getElementById("on_off");
 chrome.storage.local.get('ON_OFF', function (data) {
