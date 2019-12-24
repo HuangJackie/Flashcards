@@ -7,7 +7,8 @@ chrome.runtime.onInstalled.addListener(function () {
         num_questions: 2,
         NUM: 2,
         num_redirects: 3,
-        REDIRECTS: 3
+        REDIRECTS: 3,
+        whitelist: ["quiz.html"]
     }, function () {
         console.log('Initialized dict.');
     });
@@ -28,9 +29,12 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
         // console.log(tabId);
         // console.log(changeInfo);
         // console.log(tab);
+        chrome.storage.local.get(['num_redirects', 'prev_url', 'whitelist'], function (data) {
+            // console.log((data.whitelist).filter(url => (tab.url.indexOf(url) === -1)));
+            // console.log(tab.url);
+            // console.log(data.whitelist);
+            if (data.whitelist.length === data.whitelist.filter(url => (tab.url.indexOf(url) === -1)).length) {
 
-        if (tab.url.indexOf('quiz.html') === -1) {
-            chrome.storage.local.get(['num_redirects', 'prev_url'], function (data) {
                 if (data.num_redirects === 0) {
                     chrome.storage.local.set({ prev_url: tab.url }, function () {
                         chrome.tabs.update({ url: "quiz.html" });
@@ -40,7 +44,8 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
                         chrome.storage.local.set({ num_redirects: data.num_redirects - 1, prev_url: tab.url });
                     }
                 }
-            });
-        }
+
+            }
+        });
     }
 });

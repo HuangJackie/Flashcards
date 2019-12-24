@@ -51,3 +51,14 @@ submit_redirects.onclick = function (element) {
     }
     num_redirects.value = "";
 }
+
+let submit_whitelist = document.getElementById('submit_whitelist');
+let whitelist_page = document.getElementById('whitelist_page');
+
+submit_whitelist.onclick = function (element) {
+    chrome.storage.local.get('whitelist', function (data) {
+        data.whitelist.push(whitelist_page.value);
+        chrome.storage.local.set({ whitelist: [...data.whitelist] });
+        whitelist_page.value = "";
+    });
+}
