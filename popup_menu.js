@@ -57,8 +57,10 @@ let whitelist_page = document.getElementById('whitelist_page');
 
 submit_whitelist.onclick = function (element) {
     chrome.storage.local.get('whitelist', function (data) {
-        data.whitelist.push(whitelist_page.value);
-        chrome.storage.local.set({ whitelist: [...data.whitelist] });
+        if (!data.whitelist.includes(whitelist_page.value)) {
+            data.whitelist.push(whitelist_page.value);
+            chrome.storage.local.set({ whitelist: [...data.whitelist] });
+        }
         whitelist_page.value = "";
     });
 }

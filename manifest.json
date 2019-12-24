@@ -2,6 +2,7 @@
     "name": "Flashcard",
     "version": "1.0",
     "description": "A Flashcard Extension that quizzes whenever you open a new webpage.",
+    "options_page": "options.html",
     "permissions": [
         "declarativeContent",
         "history",

@@ -44,8 +44,9 @@ next.onclick = function (element) {
 
 
 exit.onclick = function (element) {
-    chrome.storage.local.get('prev_url', function (data) {
+    chrome.storage.local.get(['prev_url', 'REDIRECTS'], function (data) {
         chrome.tabs.update({ url: data.prev_url });
         chrome.history.deleteUrl({ url: "chrome-extension://" + chrome.runtime.id + "/quiz.html"});
+        chrome.storage.local.set({ num_redirects: data.REDIRECTS });
     });
 };
