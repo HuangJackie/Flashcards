@@ -3,7 +3,9 @@
 let whitelistTable = document.getElementById('whitelist');
 
 chrome.storage.local.get('whitelist', function (data) {
-    data.whitelist.shift().forEach(element => {
+    data.whitelist.shift();
+    data.whitelist.shift();
+    data.whitelist.forEach(element => {
         let row = whitelistTable.insertRow();
         row.insertCell(0).innerHTML = element;
         let button = document.createElement('button');
@@ -34,3 +36,29 @@ chrome.storage.local.get('dict', function (data) {
         row.appendChild(button);
     });
 });
+
+let submit_redirects = document.getElementById('submit_redirects');
+let num_redirects = document.getElementById('num_redirects');
+
+submit_redirects.onclick = function (element) {
+    if (/^\d+$/.test(num_redirects.value) && num_redirects.value != 0) {
+        chrome.storage.local.set({ REDIRECTS: num_redirects.value, num_redirects: num_redirects.value });
+    } else {
+        confirmation.innerHTML = "Invalid value";
+    }
+    num_redirects.value = "";
+}
+
+let submit_whitelist = document.getElementById('submit_whitelist');
+let whitelist_page = document.getElementById('whitelist_page');
+
+submit_whitelist.onclick = function (element) {
+    chrome.storage.local.get('whitelist', function (data) {
+        if (!data.whitelist.includes(whitelist_page.value)) {
+            data.whitelist.push(whitelist_page.value);
+            chrome.storage.local.set({ whitelist: [...data.whitelist] });
+        }
+        whitelist_page.value = "";
+    });
+    chrome.tabs.update({ url: "options.html" });
+}

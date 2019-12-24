@@ -3,6 +3,7 @@
   <head>
   </head>
   <body>
+    <h1>Options</h1>
     <div>
       <p>Edit your flashcards</p>
     </div>
@@ -24,6 +25,20 @@
         </tr>
       </table>
     </div>
+    <div>
+      <p>Add a page to be whitelisted</p>
+    </div>
+    <form>
+      Page to whitelist:
+      <br><input type="text" id="whitelist_page"><br>
+    </form>
+    <button id="submit_whitelist">Submit</button>
+    <br>
+    <form>
+      Number of pages before being quizzed:
+      <br><input type="text" id="num_redirects"><br>
+    </form>
+    <button id="submit_redirects">Submit</button>
     <script src="options.js"></script>
   </body>
 </html>

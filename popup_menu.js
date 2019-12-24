@@ -40,30 +40,7 @@ quiz.onclick = function (element) {
     chrome.tabs.update({ url: "quiz.html" });
 }
 
-let submit_redirects = document.getElementById('submit_redirects');
-let num_redirects = document.getElementById('num_redirects');
 
-submit_redirects.onclick = function (element) {
-    if (/^\d+$/.test(num_redirects.value) && num_redirects.value != 0) {
-        chrome.storage.local.set({ REDIRECTS: num_redirects.value, num_redirects: num_redirects.value });
-    } else {
-        confirmation.innerHTML = "Invalid value";
-    }
-    num_redirects.value = "";
-}
-
-let submit_whitelist = document.getElementById('submit_whitelist');
-let whitelist_page = document.getElementById('whitelist_page');
-
-submit_whitelist.onclick = function (element) {
-    chrome.storage.local.get('whitelist', function (data) {
-        if (!data.whitelist.includes(whitelist_page.value)) {
-            data.whitelist.push(whitelist_page.value);
-            chrome.storage.local.set({ whitelist: [...data.whitelist] });
-        }
-        whitelist_page.value = "";
-    });
-}
 
 let onOffSwitch = document.getElementById("on_off");
 chrome.storage.local.get('ON_OFF', function (data) {
@@ -77,4 +54,9 @@ onOffSwitch.onclick = function (element) {
     else {
         chrome.storage.local.set({ ON_OFF: false });
     }
+};
+
+let options = document.getElementById("options");
+options.onclick = function (element) {
+    chrome.tabs.update({ url: "options.html" });
 };
