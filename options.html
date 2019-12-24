@@ -1,44 +1,59 @@
 <!DOCTYPE html>
 <html>
-  <head>
-  </head>
-  <body>
-    <h1>Options</h1>
+
+<head>
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <script src="js/jquery-3.4.1.min.js" type="text/javascript"></script>
+</head>
+
+<body>
+  <div class="flex-col p-3">
+    <h1 class="text-center">OPTIONS</h1>
+    <h3 class="text-center">Saved flashcards</h3>
     <div>
-      <p>Edit your flashcards</p>
-    </div>
-    <div>
-      <table id="flashcards">
+      <table class="table text-center" id="flashcards">
         <tr>
           <th>Term</th>
           <th>Definition</th>
+          <th>Delete</th>
         </tr>
       </table>
     </div>
+    <h3 class="text-center">Saved whitelist</h3>
     <div>
-      <p>Edit your whitelisted pages</p>
-    </div>
-    <div>
-      <table id="whitelist">
+      <table class="table text-center" id="whitelist">
         <tr>
           <th>Urls</th>
+          <th>Delete</th>
         </tr>
       </table>
     </div>
-    <div>
-      <p>Add a page to be whitelisted</p>
-    </div>
     <form>
-      Page to whitelist:
-      <br><input type="text" id="whitelist_page"><br>
+      <div class="form-group text-center mx-5">
+        <h5 class="text-center">Add a page to be whitelisted</h5>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <button class="btn btn-primary" id="submit_whitelist">Submit</button>
+          </div>
+          <input class="form-control" placeholder="url" type="text" id="whitelist_page"><br>
+        </div>
+      </div>
     </form>
-    <button id="submit_whitelist">Submit</button>
     <br>
     <form>
-      Number of pages before being quizzed:
-      <br><input type="text" id="num_redirects"><br>
+      <div class="form-group text-center mx-5">
+        <h5 class="text-center">Number of pages before being quizzed:</h5>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <button class="btn btn-primary " id="submit_redirects">Submit</button>
+          </div>
+          <input class="form-control" placeholder="#" type="text" id="num_redirects"><br>
+        </div>
+
+      </div>
     </form>
-    <button id="submit_redirects">Submit</button>
-    <script src="options.js"></script>
-  </body>
+  </div>
+  <script src="options.js"></script>
+</body>
+
 </html>
