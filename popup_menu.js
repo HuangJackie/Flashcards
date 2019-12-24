@@ -64,3 +64,17 @@ submit_whitelist.onclick = function (element) {
         whitelist_page.value = "";
     });
 }
+
+let onOffSwitch = document.getElementById("on_off");
+chrome.storage.local.get('ON_OFF', function (data) {
+    onOffSwitch.checked = data.ON_OFF;
+});
+
+onOffSwitch.onclick = function (element) {
+    if (onOffSwitch.checked) {
+        chrome.storage.local.set({ ON_OFF: true });
+    }
+    else {
+        chrome.storage.local.set({ ON_OFF: false });
+    }
+};

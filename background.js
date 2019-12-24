@@ -8,7 +8,8 @@ chrome.runtime.onInstalled.addListener(function () {
         NUM: 2,
         num_redirects: 3,
         REDIRECTS: 3,
-        whitelist: ["quiz.html"]
+        whitelist: ["quiz.html"],
+        ON_OFF: true
     }, function () {
         console.log('Initialized dict.');
     });
@@ -25,11 +26,12 @@ chrome.runtime.onInstalled.addListener(function () {
 
 chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
     // console.log(details.url + " frameId: " + details.frameId + " transitionType: " + details.transitionType + " tabId: " + details.tabId + " transitionQualifiers: " + details.transitionQualifiers);
-    if (tab.active && changeInfo.status === "complete") {
-        // console.log(tabId);
-        // console.log(changeInfo);
-        // console.log(tab);
-        chrome.storage.local.get(['num_redirects', 'prev_url', 'whitelist'], function (data) {
+    chrome.storage.local.get(['num_redirects', 'prev_url', 'whitelist', 'ON_OFF'], function (data) {
+        if (tab.active && changeInfo.status === "complete" && data.ON_OFF) {
+            // console.log(tabId);
+            // console.log(changeInfo);
+            // console.log(tab);
+
             // console.log((data.whitelist).filter(url => (tab.url.indexOf(url) === -1)));
             // console.log(tab.url);
             // console.log(data.whitelist);
@@ -46,6 +48,7 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
                 }
 
             }
-        });
-    }
+
+        }
+    });
 });
