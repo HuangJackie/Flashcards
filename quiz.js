@@ -10,15 +10,15 @@ let exit = document.getElementById('exit');
 
 $('#result_alert_incorrect').hide();
 $('#result_alert_correct').hide();
-chrome.storage.local.get(['dict', 'current_question', 'num_questions', "NUM"], function (data) {
-    if (data.num_questions === 0 || data.current_question >= Object.keys(data.dict).length) {
-        term.innerHTML = "Finished";
-        document.getElementById('instructions').innerHTML = "Congratulations!";
+chrome.storage.local.get(['dict', 'current_question'], function (data) {
+    if (data.current_question >= Object.keys(data.dict).length) {
+        term.innerHTML = "";
+        document.getElementById('instructions').innerHTML = "Good Job!";
         submit.disabled = true;
         definition.disabled = true;
         exit.disabled = false;
         exit.style.visibility = "visible";
-        chrome.storage.local.set({ num_questions: data.NUM, current_question: 0 });
+        chrome.storage.local.set({ current_question: 0 });
     } else {
         term.innerHTML = data.dict[data.current_question]["term"];
     }
@@ -34,7 +34,7 @@ submit.onclick = function (element) {
             definition.disabled = true;
             next.disabled = false;
             next.style.visibility = "visible";
-            chrome.storage.local.set({ num_questions: data.num_questions - 1, num_redirects: data.REDIRECTS });
+            chrome.storage.local.set({num_redirects: data.REDIRECTS });
         }
         else {
             $('#result_alert_incorrect').show();

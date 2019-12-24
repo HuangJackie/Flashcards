@@ -12,9 +12,11 @@ chrome.storage.local.get('whitelist', function (data) {
         button.innerHTML = "X";
         button.setAttribute("class", "btn btn-outline-primary");
         button.addEventListener('click', function () {
-            data.whitelist.splice(data.whitelist.indexOf(element), 1)
-            chrome.storage.local.set({ whitelist: data.whitelist })
-            row.parentNode.removeChild(row);
+            chrome.storage.local.get('whitelist', function (data) {
+                data.whitelist.splice(data.whitelist.indexOf(element), 1)
+                chrome.storage.local.set({ whitelist: data.whitelist })
+                row.parentNode.removeChild(row);
+            });
         });
         row.appendChild(button);
     });
@@ -45,8 +47,6 @@ let num_redirects = document.getElementById('num_redirects');
 submit_redirects.onclick = function (element) {
     if (/^\d+$/.test(num_redirects.value) && num_redirects.value != 0) {
         chrome.storage.local.set({ REDIRECTS: num_redirects.value, num_redirects: num_redirects.value });
-    } else {
-        confirmation.innerHTML = "Invalid value";
     }
     num_redirects.value = "";
 }

@@ -3,7 +3,7 @@
 let submit = document.getElementById('submit');
 let term = document.getElementById('term');
 let definition = document.getElementById('definition');
-let confirmation = document.getElementById('confirmation');
+// let confirmation = document.getElementById('confirmation');
 
 submit.onclick = function (element) {
     chrome.storage.local.get('dict', function (data) {
@@ -12,7 +12,7 @@ submit.onclick = function (element) {
         data.dict[length]["term"] = term.value;
         data.dict[length]["definition"] = definition.value;
         chrome.storage.local.set({ dict: data.dict });
-        confirmation.innerHTML = data.dict[length]["term"] + " " + data.dict[length]["definition"];
+        // confirmation.innerHTML = data.dict[length]["term"] + " " + data.dict[length]["definition"];
         term.value = "";
         definition.value = "";
     });
